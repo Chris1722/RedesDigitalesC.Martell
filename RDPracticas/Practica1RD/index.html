@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Full Width Pics - Start Bootstrap Template</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+        .code-block {
+            background-color: #f8f9fa;
+            padding: 1em;
+            border-radius: 5px;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 14px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+          <a class="navbar-brand" href="#!">Ibero Puebla</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                  <li class="nav-item"><a class="nav-link active" aria-current="page" href="../">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/RDPracticas/">RD</a></li>
+
+                  <li class="nav-item"><a class="nav-link" href="/LabRDPracticas/">Lab. RD</a></li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+    <!-- Header - set the background image for the header in the line below-->
+    <header class="py-5 bg-image-full" style="background-image: url('../../images/FondoPaginaPrincipal.jpg')">
+        <div class="text-center my-5">
+            <h1 class="text-white fs-3 fw-bolder">Practica 1</h1>
+        </div>
+    </header>
+    <!-- About section-->
+    <section id="about">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <h2>Protocolos de Comunicacion</h2>
+                    <p class="lead">En esta practica vimos sobre los distintos protocolos de comunicacion, y los aplicamos en arduino, por medio del simulador TinkerCad, y de ahi los armamos en la vida real. Los materiales que usamos fueron los siguientes:</p>
+                    <ul>
+                        <li>2 Arduinos</li>
+                        <li>1 Led Rojo</li>
+                        <li>Potenciometro</li>
+                        <li>Resistencia 220 Ohms</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services section-->
+    <section class="bg-light" id="services">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Codigo-->
+                    <h2>1er Circuito</h2>
+                    <p class="lead">Código Arduino Transmisor:</p>
+                    <pre class="code-block"><code>
+// Enviar Pulsos Arduino 1
+
+void Pulsos (int Cantidad, int Frecuencia) {
+    for (int i = 0; i < Cantidad; i++) {
+        digitalWrite(8, HIGH);
+        delay(1000 / Frecuencia);
+        digitalWrite(8, LOW);
+        delay(1000 / Frecuencia);
+    }
+}
+
+void setup() {
+    pinMode(8, OUTPUT);
+    Pulsos(256, 100); /* Esta fue la cantidad y frecuencia máxima
+                         a la que se puede llegar, ya que después
+                         de aumentar un 0 al 100,este ya no llega
+                         a contar 256 pulsos. */
+}
+
+void loop() {
+}
+                    </code></pre>
+                    <!-- Codigo-->
+                    <p class="lead">Código Arduino Receptor:</p>
+                    <pre class="code-block"><code>
+// Contador de Pulsos Arduino 2
+
+int Cuenta = 0;
+void setup() {
+    pinMode(8, INPUT); 
+    Serial.begin(9600);
+}
+
+void loop() {
+    if (digitalRead(8) == HIGH) {
+        while (digitalRead(8) == HIGH);
+        Cuenta++;
+        Serial.println(Cuenta);
+    }
+}
+                    </code></pre>
+
+                    <p class="lead">Imagen Circuito TinkerCad:</p>
+                    <img src="images/TinkerCadCircuito1.png" alt="Descripción de la imagen">
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact section-->
+    <section id="contact">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <h2>2do Circuito</h2>
+                    <p class="lead">Código Arduino Transmisor:</p>
+                    <pre class="code-block"><code>
+void PulsosPorTiempo (int Tiempo, int Frecuencia)
+{
+  int Periodo = 1000 / Frecuencia; // Tiempo de un ciclo (en ms)
+  int Cantidad = (Tiempo / Periodo) * 2; /* Cantidad de pulsos 
+  completos en el tiempo especificado. */
+                        
+  for (int i = 0; i < Cantidad; i++)
+  {
+    digitalWrite(8, HIGH);
+    delay(1000 / Frecuencia / 2);
+    digitalWrite(8, LOW);
+    delay(1000 / Frecuencia / 2);
+   }
+}
+                        
+void setup()
+{
+    pinMode(8, OUTPUT);
+    PulsosPorTiempo(10, 100);/*Enviar pulsos 
+    durante 2560 ms (2.56 segundos) a 100 Hz*/
+}
+                        
+void loop()
+{
+}
+                    </code></pre>
+
+                     <!-- Codigo-->
+                     <p class="lead">Código Arduino Receptor:</p>
+                     <pre class="code-block"><code>
+
+//Contador de Pulsos Arduino 2
+
+unsigned long lastPulseTime = 0;
+unsigned long currentTime;
+int Cuenta = 0;
+                        
+void setup()
+{
+    pinMode(8, INPUT);
+    Serial.begin(9600);
+}
+                        
+void loop()
+{
+    if (digitalRead(8) == HIGH)
+    {
+        while (digitalRead(8) == HIGH); // Espera a que el pulso termine
+        Cuenta++;
+        currentTime = micros();
+        unsigned long pulseDuration = currentTime - lastPulseTime;
+        lastPulseTime = currentTime;
+                            
+        Serial.print("Cuenta: ");
+        Serial.print(Cuenta);
+        Serial.print(" Tiempo entre pulsos: ");
+        Serial.println(pulseDuration);
+    }
+}
+
+                     </code></pre>
+ 
+                     <p class="lead">Imagen Circuito TinkerCad:</p>
+                     <img src="images/TinkerCadCircuito1.png" alt="Descripción de la imagen">
+ 
+ 
+                 </div>
+             </div>
+         </div>
+     </section>
+
+    <section class="bg-light" id="services">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Codigo-->
+                    <h2>3er Circuito</h2>
+                    <p class="lead">Código Arduino Transmisor:</p>
+                    <pre class="code-block"><code>
+// C++ code ARDUINO TRANSMISOR
+
+int valor;		//variable que almacena la lectura analógica raw
+int valorRedondeado;  // Valor redondeado
+
+
+
+void setup()
+{
+  
+for (int i = 2; i <= 9; i++) {
+    pinMode(i, OUTPUT);
+  }
+  
+  //Inicializamos la comunicación serial
+  Serial.begin(9600);
+  
+  //Escribimos por el monitor serie mensaje de inicio
+  Serial.println("Inicio de sketch - valores del potenciometro");
+}
+
+void loop()
+{
+  // leemos del pin A0 valor
+  valor = analogRead(A5);
+  float valor8bits = (255.0 / 1023.0) * valor;
+  valorRedondeado = round(valor8bits);  // Redondear el valor
+
+  
+  //Imprimimos por el monitor serie
+  Serial.print("El valor es = ");
+  Serial.println(valor);
+  Serial.print("El valor en 8 bits es = ");
+  Serial.println(valorRedondeado);
+  Serial.print("El Valor en binario es: ");
+  printBinary(valorRedondeado);
+  Serial.println();
+  delay(2000);  // Espera de 1 segundo antes de la próxima lectura
+
+  sendBits(valorRedondeado);  // Enviar el valor bit x bit al otro Arduino
+
+  
+}
+
+void printBinary(int num) {
+  for (int i = 7; i >= 0; i--) {
+    Serial.print(bitRead(num, i));
+  }
+}
+    
+void sendBits(int num) {
+  for (int i = 0; i < 8; i++) {
+    int bit = bitRead(num, i);
+    digitalWrite(2 + i, bit);  // Enviar cada bit a los pines 2 al 9
+  }
+}
+                    </code></pre>
+                    <!-- Codigo-->
+                    <p class="lead">Código Arduino Receptor:</p>
+                    <pre class="code-block"><code>
+int receivedValue = 0;  // Valor recibido
+
+void setup() {
+  Serial.begin(9600);  // Inicializa la comunicación serie a 9600 baudios
+
+  // Configurar los pines del 2 al 9 como entradas
+  for (int i = 2; i <= 9; i++) {
+    pinMode(i, INPUT);
+  }
+}
+
+void loop() {
+  receivedValue = 0;
+  for (int i = 0; i < 8; i++) {
+    int bit = digitalRead(2 + i);  // Leer cada bit de los pines 2 al 9
+    receivedValue |= (bit << i);  // Reconstruir el valor
+  }
+  
+  Serial.print("Valor recibido en binario: ");
+  printBinary(receivedValue);
+  Serial.print(" - Valor recibido: ");
+  Serial.println(receivedValue);
+
+  delay(2000);  // Espera de 1 segundo antes de la próxima lectura
+}
+
+// Función para imprimir un número en binario
+void printBinary(int num) {
+  for (int i = 7; i >= 0; i--) {
+    Serial.print(bitRead(num, i));
+  }
+}
+                    </code></pre>
+
+                    <p class="lead">Imagen Circuito TinkerCad:</p>
+                    <img src="images/TinkerCadCircuit3.png" alt="Descripción de la imagen">
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Contact section-->
+        <section id="contact">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>4to Circuito</h2>
+                        <p class="lead">Código Arduino Transmisor:</p>
+                        <pre class="code-block"><code>
+// C++ code ARDUINO TRANSMISOR
+
+void setup() {
+  Serial.begin(9600); // Inicializar comunicación serial para depuración
+  pinMode(A5, INPUT); // Pin del potenciómetro
+  pinMode(8, OUTPUT); // Pin para transmitir datos
+}
+
+void loop() {
+  int analogValue = analogRead(A5);
+  int value8Bits = analogValue / 4;
+
+  Serial.print("Enviando valor (0-255): ");
+  Serial.println(value8Bits);
+  
+  sendByte(value8Bits);
+
+  delay(1000); // Esperar un segundo antes de la siguiente transmisión
+}
+
+void sendByte(int value) {
+  for (int i = 7; i >= 0; i--) {
+    int bit = (value >> i) & 1;
+    digitalWrite(8, bit);
+    delay(10); // Tiempo de retardo para sincronización (ajustable)
+  }
+}
+
+                        </code></pre>
+    
+                         <!-- Codigo-->
+                         <p class="lead">Código Arduino Receptor:</p>
+                         <pre class="code-block"><code>
+    
+// C++ code ARDUINO RECEPTOR
+
+void setup() {
+  Serial.begin(9600); // Inicializar comunicación serial para depuración
+  pinMode(8, INPUT); // Pin para recibir datos
+}
+
+void loop() {
+  int receivedValue = receiveByte();
+  Serial.print("Valor recibido (0-255): ");
+  Serial.println(receivedValue);
+  Serial.print("Binario: ");
+  printBinary(receivedValue);
+  delay(1000); // Esperar un segundo antes de la siguiente lectura
+}
+
+int receiveByte() {
+  int value = 0;
+  for (int i = 7; i >= 0; i--) {
+    int bit = digitalRead(8);
+    value |= (bit << i);
+    delay(10); // Tiempo de retardo para sincronización (ajustable)
+  }
+  return value;
+}
+
+void printBinary(int value) {
+  for (int i = 7; i >= 0; i--) {
+    Serial.print((value >> i) & 1);
+  }
+  Serial.println();
+}
+    
+                         </code></pre>
+     
+                         <p class="lead">Imagen Circuito TinkerCad:</p>
+                         <img src="images/TinkerCadCircuit4.png" alt="Descripción de la imagen">
+     
+     
+                     </div>
+                 </div>
+             </div>
+         </section>
+
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Full Width Pics - Start Bootstrap Template</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+        .code-block {
+            background-color: #f8f9fa;
+            padding: 1em;
+            border-radius: 5px;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 14px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+   <!-- Responsive navbar-->
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#!">Ibero Puebla</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="../">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/RDPracticas/">RD</a></li>
+
+                <li class="nav-item"><a class="nav-link" href="/LabRDPracticas/">Lab. RD</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    <!-- Header - set the background image for the header in the line below-->
+    <header class="py-5 bg-image-full" style="background-image: url('../../images/FondoPaginaPrincipal.jpg')">
+        <div class="text-center my-5">
+            <h1 class="text-white fs-3 fw-bolder">Practica 1</h1>
+        </div>
+    </header>
+    <!-- About section-->
+    <section id="about">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <h2>Entradas y Salidas Digitales</h2>
+                    <p class="lead">En esta practica Conocimos, identificamos y comprobamos el funcionamiento de las entradas y salidas digitales en el módulo Wifi ESP8266. Los materiales que usamos fueron los siguientes:</p>
+                    <ul>
+                        <li>ESP32</li>
+                        <li>2 Botones Push-Button</li>
+                        <li>1 Led Rojo</li>
+                        <li>Resistencia 220 Ohms</li>
+                        <li>Resistencia 1k Ohms</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services section-->
+    <section class="bg-light" id="services">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Codigo-->
+                    <h2>1er Circuito: Prender 1 Led</h2>
+                    <p class="lead">Código ESP32:</p>
+                    <pre class="code-block"><code>
+
+                      //Prender 1 Led
+                      #define Led 4
+                      #define Push1 19
+                      #define Push2 23
+                      
+                      void.setup() {
+                        Serial.begin(115200);
+                        pinMode(Led.OUTPUT);
+                      }
+                      
+                      void loop() {
+                        digitalWrite(Led, HIGH);
+                        Serial.print("Led Prendido");
+                      }
+
+                    </code></pre>
+                    <p class="lead">Imagen Circuito WOWKI:</p>
+                    <img src="images/TinkerCadCircuito1.png" alt="Descripción de la imagen">
+
+                    <p class="lead">Video del Circuito</p>
+                    <iframe width="800" height="600" src="https://youtube.com/shorts/eOPO_9OD_Fc?si=R21MNY2lBw_tU42U" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact section-->
+    <section id="contact">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Codigo-->
+                    <h2>2do Circuito: Parpadeo 1 Led</h2>
+                    <p class="lead">Código Arduino Transmisor:</p>
+                    <pre class="code-block"><code>
+
+                      //Parpadear 1 Led
+                      #define Led 4
+                      #define Push1 19
+                      #define Push2 23
+                      
+                      void.setup() {
+                        Serial.begin(115200);
+                        pinMode(Led.OUTPUT);
+                      }
+                      
+                      void loop() {
+                        digitalWrite(Led, HIGH);
+                        Serial.print("Led Prendido");
+                        delay(3000);
+                        digitalWrite(Led, LOW);
+                      }
+
+                    </code></pre>
+                    <p class="lead">Imagen Circuito WOWKI:</p>
+                    <img src="images/TinkerCadCircuito1.png" alt="Descripción de la imagen">
+
+                    <p class="lead">Video del Circuito</p>
+                    <iframe width="800" height="600" src="https://youtube.com/shorts/3-BOIGNjybA?si=IekMRQpbiXUxIJGn" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services section-->
+    <section class="bg-light" id="services">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Codigo-->
+                    <h2>3er Circuito: Prender y apagar con Push-Buttons y 1 Led</h2>
+                    <p class="lead">Código ESP32:</p>
+                    <pre class="code-block"><code>
+
+                      //Prender 1 LED con PushButtons
+                      #define Led 4
+                      #define Push1 19
+                      #define Push2 23
+
+                      int Button1 = 0;
+                      int Button2 = 0;
+
+                      void setup() {
+                      Srial.begin(115200);
+                      pinMode(Led,OUTPUT);
+                      pinMode(Push1,INPUT);
+                      pinMode(Push2,INPUT);
+                      }
+                        
+                      void loop() {
+
+                      Button1 = digitalRead(Push1);
+                      Button2 = digitalRead(Push2);
+
+
+                      if (Button1==1) {
+                      digitalWrite(Led, HIGH);
+                      Serial.print("Led Prendido");
+                      }
+
+
+                      if (Button2==1) {
+                      digitalWrite(Led, LOW);
+                      Serial.print("Led Apagado");
+                      }
+                      }
+
+                    </code></pre>
+                    <p class="lead">Imagen Circuito WOWKI:</p>
+                    <img src="images/TinkerCadCircuito1.png" alt="Descripción de la imagen">
+
+                    <p class="lead">Video del Circuito</p>
+                    <iframe width="800" height="600" src="https://youtube.com/shorts/DYJW8GJX8zs?si=OD1FsNpMcA8_JPgr" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Contact section-->
+    <section id="contact">
+      <div class="container px-4">
+          <div class="row gx-4 justify-content-center">
+              <div class="col-lg-8">
+                  <!-- Codigo-->
+                  <h2>4to Circuito: Funcion OR</h2>
+                  <p class="lead">Código Arduino Transmisor:</p>
+                  <pre class="code-block"><code>
+                    
+                    //Funcion OR
+                    #define Led 4
+                    #define Push1 19
+                    #define Push2 23
+
+                    int Button1 = 0;
+                    int Button2 = 0;
+
+                    void setup() {
+                      Serial.begin(115200);
+                      pinMode(Led, OUTPUT);
+                      pinMode(Push1, INPUT);
+                      pinMode(Push2, INPUT);
+                    }
+
+                    void loop() {
+                      Button1 = digitalRead(Push1);
+                      Button2 = digitalRead(Push2);
+
+                      // Utilizamos la lógica OR para encender el LED si cualquiera de los botones está presionado
+                      if (Button1 == 1 || Button2 == 1) {
+                        digitalWrite(Led, HIGH);
+                        Serial.print("Led Prendido");
+                      } else {
+                        digitalWrite(Led, LOW);
+                        Serial.print("Led Apagado");
+                      }
+                    }
+
+                  </code></pre>
+                  <p class="lead">Imagen Circuito WOWKI:</p>
+                  <img src="images/TinkerCadCircuito1.png" alt="Descripción de la imagen">
+
+                  <p class="lead">Video del Circuito</p>
+                  <iframe width="800" height="600" src="https://youtube.com/shorts/eOPO_9OD_Fc?si=R21MNY2lBw_tU42U" frameborder="0" allowfullscreen></iframe>
+              </div>
+          </div>
+      </div>
+  </section>
+
+   <!-- Services section-->
+   <section class="bg-light" id="services">
+    <div class="container px-4">
+        <div class="row gx-4 justify-content-center">
+            <div class="col-lg-8">
+                <!-- Codigo-->
+                <h2>5to Circuito: Funcion AND</h2>
+                <p class="lead">Código ESP32:</p>
+                <pre class="code-block"><code>
+
+                  //Funcion AND
+                  #define Led 4
+                  #define Push1 19
+                  #define Push2 23
+
+                  int Button1 = 0;
+                  int Button2 = 0;
+
+                  void setup() {
+                    Serial.begin(115200);
+                    pinMode(Led, OUTPUT);
+                    pinMode(Push1, INPUT);
+                    pinMode(Push2, INPUT);
+                  }
+
+                  void loop() {
+                    Button1 = digitalRead(Push1);
+                    Button2 = digitalRead(Push2);
+
+                    // Lógica AND para encender el LED 
+                    if (Button1 == 1 && Button2 == 1) {
+                      digitalWrite(Led, HIGH);
+                      Serial.print("Led Prendido");
+                    } else {
+                      digitalWrite(Led, LOW);
+                      Serial.print("Led Apagado");
+                    }
+                  }
+
+                </code></pre>
+                <p class="lead">Imagen Circuito WOWKI:</p>
+                <img src="images/TinkerCadCircuito1.png" alt="Descripción de la imagen">
+
+                <p class="lead">Video del Circuito</p>
+                <iframe width="800" height="600" src="https://youtube.com/shorts/eOPO_9OD_Fc?si=R21MNY2lBw_tU42U" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+</html>
