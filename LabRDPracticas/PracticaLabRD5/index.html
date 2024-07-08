@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Full Width Pics - Start Bootstrap Template</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+        .code-block {
+            background-color: #f8f9fa;
+            padding: 1em;
+            border-radius: 5px;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 14px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+          <a class="navbar-brand" href="#!">Ibero Puebla</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                  <li class="nav-item"><a class="nav-link active" aria-current="page" href="../">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/RDPracticas/">RD</a></li>
+
+                  <li class="nav-item"><a class="nav-link" href="/LabRDPracticas/">Lab. RD</a></li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+    <!-- Header - set the background image for the header in the line below-->
+    <header class="py-5 bg-image-full" style="background-image: url('../../images/FondoPaginaPrincipal.jpg')">
+        <div class="text-center my-5">
+            <h1 class="text-white fs-3 fw-bolder">Practica 5</h1>
+        </div>
+    </header>
+    <!-- About section-->
+    <section id="about">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <h2>ESP32 Sensores</h2>
+                    <p class="lead">En esta practica vimos sobre distintos tipos de sensores, primero los simulamos en wowki, y de ahi los armamos en la vida realino. Los materiales que usamos fueron los siguientes:</p>
+                    <ul>
+                        <li>ESP32</li>
+                        <li>1 Led Rojo</li>
+                        <li>1 PushButton</li>
+                        <li>2 Sensores Inteligente</li>
+                        <li>1 Potenciometro</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services section-->
+    <section class="bg-light" id="services">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Codigo-->
+                    <h2>1er Circuito</h2>
+                    <p class="lead">Sensor Digital ESP32</p>
+                    <pre class="code-block"><code>
+// Sensor Digital ESP32
+
+int boton = 33;
+int led = 32;
+
+// Variables de estado
+int estado_boton = 0;
+
+void setup() {
+  // Configurar el puerto 32 como salida
+  pinMode(led, OUTPUT);
+
+  // Configurar el puerto 33 como entrada
+  pinMode(boton, INPUT);
+}
+
+void loop() {
+  // Leer el estado del botón
+  estado_boton = digitalRead(boton);
+
+  // Si el botón está presionado, encender el LED
+  if (estado_boton == 1) {
+    digitalWrite(led, HIGH);
+  } else {
+    // Si el botón no está presionado, apagar el LED
+    digitalWrite(led, LOW);
+  }
+}
+                    </code></pre>
+
+                    <p class="lead">Imagen Circuito Wowki:</p>
+                    <img src="Images/Digital.png" alt="Descripción de la imagen">
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact section-->
+    <section id="contact">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <h2>2do Circuito</h2>
+                    <p class="lead">Sensor Analogico ESP32</p>
+                    <pre class="code-block"><code>
+int pot = 33;
+int led = 32;
+
+// Variables de estado
+int valor_analogico = 0;
+
+void setup() {
+  // Configurar el puerto 32 como salida
+  pinMode(led, OUTPUT);
+
+}
+
+void loop() {
+  // Leer el estado del botón
+  valor_analogico = analogRead(pot);
+
+  // Si el botón está presionado, encender el LED
+  if (valor_analogico >= 2048) {
+    digitalWrite(led, HIGH);
+  } else {
+    // Si el botón no está presionado, apagar el LED
+    digitalWrite(led, LOW);
+  }
+}
+                    </code></pre>
+ 
+                     <p class="lead">Imagen Circuito TinkerCad:</p>
+                     <img src="Images/analogico1.png" alt="Descripción de la imagen">
+ 
+ 
+                 </div>
+             </div>
+         </div>
+     </section>
+
+    <section class="bg-light" id="services">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Codigo-->
+                    <h2>3er Circuito</h2>
+                    <p class="lead">Sensor Inteligente ESP32</p>
+                    <pre class="code-block"><code>
+//Librerias
+#include <DHT.h>
+
+//Puertos GPIO
+int led=32;
+
+
+//DHT22
+DHT dht (33, DHT22); //DHΤΡΙΝ, DHTTYPE
+
+//Variables status
+int valor_temperatura=0;
+int valor_humedad=0;
+
+void setup() {
+  // put your setup code here, to run once:
+
+  pinMode(led, OUTPUT);// Configurar puerto 2 como salida
+  dht.begin();//Inicializamos DHT
+  Serial.begin(115200);
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+delay(1000);
+
+valor_temperatura = dht.readTemperature();
+valor_humedad = dht.readHumidity();
+
+// Impresion de los valores en la consola serial
+Serial.print("Temperatura: ");
+Serial.print(valor_temperatura);
+Serial.print("ºC Humedad: ");
+Serial.print(valor_humedad);
+Serial.print("%\n");
+
+// Encendido del LED si la temperatura es superior a 25ºC
+if (valor_humedad >= 50) {
+digitalWrite(led, HIGH);
+}
+
+}
+                    </code></pre>
+
+                    <p class="lead">Imagen Circuito TinkerCad:</p>
+                    <img src="Images/inteligente1.png" alt="Descripción de la imagen">
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Contact section-->
+        <section id="contact">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>4to Circuito</h2>
+                        <p class="lead">Sensor Digital PIR ESP32</p>
+                        <pre class="code-block"><code>
+/*
+   PIR sensor tester
+*/
+
+int ledPin = 32;                // choose the pin for the LED
+int inputPin = 33;               // choose the input pin (for PIR sensor)
+int pirState = LOW;             // we start, assuming no motion detected
+int val = 0;                    // variable for reading the pin status
+
+void setup() {
+  pinMode(ledPin, OUTPUT);      // declare LED as output
+  pinMode(inputPin, INPUT);     // declare sensor as input
+
+  Serial.begin(9600);
+}
+
+void loop() {
+  val = digitalRead(inputPin);  // read input value
+  if (val == HIGH) {            // check if the input is HIGH
+    digitalWrite(ledPin, HIGH);  // turn LED ON
+    if (pirState == LOW) {
+      // we have just turned on
+      Serial.println("Motion detected!");
+      // We only want to print on the output change, not state
+      pirState = HIGH;
+    }
+  } else {
+    digitalWrite(ledPin, LOW); // turn LED OFF
+    if (pirState == HIGH) {
+      // we have just turned of
+      Serial.println("Motion ended!");
+      // We only want to print on the output change, not state
+      pirState = LOW;
+    }
+  }
+}
+
+                        </code></pre>
+    
+                         <p class="lead">Imagen Circuito TinkerCad:</p>
+                         <img src="Images/PIR.png" alt="Descripción de la imagen">
+     
+     
+                     </div>
+                 </div>
+             </div>
+         </section>
+
+         <section class="bg-light" id="services">
+          <div class="container px-4">
+              <div class="row gx-4 justify-content-center">
+                  <div class="col-lg-8">
+                      <!-- Codigo-->
+                      <h2>5to Circuito</h2>
+                      <p class="lead">Sensor Analogico Slide Potenciometer ESP32</p>
+                      <pre class="code-block"><code>
+int potpin = 33;  // Pin analógico usado para conectar el potenciómetro
+int val;    // Variable para leer el valor del pin analógico
+
+void setup() {
+  Serial.begin(115200); // Inicializa la comunicación serie a 115200 baudios
+}
+
+void loop() {
+  val = analogRead(potpin); // Lee el valor del potenciómetro (valor entre 0 y 4095 para ESP32)
+  Serial.print("El valor del Potenciómetro es: ");
+  Serial.println(val); // Imprime el valor leído
+
+  delay(500); // Espera 500 ms antes de la siguiente lectura
+}
+
+
+                      </code></pre>
+  
+                      <p class="lead">Imagen Circuito TinkerCad:</p>
+                      <img src="Images/Analogico.png" alt="Descripción de la imagen">
+  
+  
+                  </div>
+              </div>
+          </div>
+      </section>
+
+        <!-- Contact section-->
+        <section id="contact">
+          <div class="container px-4">
+              <div class="row gx-4 justify-content-center">
+                  <div class="col-lg-8">
+                      <h2>6to Circuito</h2>
+                      <p class="lead">Sensor Inteligente MPU </p>
+                      <pre class="code-block"><code>
+// Start the simulation, click on the MPU6050 part, and
+// change the x/y/z values to see changes in the plotter.
+
+#include <Adafruit_MPU6050.h>
+#include <Adafruit_Sensor.h>
+#include <Wire.h>
+
+Adafruit_MPU6050 mpu;
+
+void setup(void) {
+  Serial.begin(115200);
+
+  // Try to initialize!
+  if (!mpu.begin()) {
+    Serial.println("Failed to find MPU6050 chip");
+    while (1) {
+      delay(10);
+    }
+  }
+
+  mpu.setAccelerometerRange(MPU6050_RANGE_16_G);
+  mpu.setGyroRange(MPU6050_RANGE_250_DEG);
+  mpu.setFilterBandwidth(MPU6050_BAND_21_HZ);
+  Serial.println("");
+  delay(100);
+}
+
+void loop() {
+
+  /* Get new sensor events with the readings */
+  sensors_event_t a, g, temp;
+  mpu.getEvent(&a, &g, &temp);
+
+  /* Print out the values */
+  Serial.print(a.acceleration.x);
+  Serial.print(",");
+  Serial.print(a.acceleration.y);
+  Serial.print(",");
+  Serial.print(a.acceleration.z);
+  Serial.print(", ");
+  Serial.print(g.gyro.x);
+  Serial.print(",");
+  Serial.print(g.gyro.y);
+  Serial.print(",");
+  Serial.print(g.gyro.z);
+  Serial.println("");
+
+  delay(1000);
+}
+
+
+                      </code></pre>
+  
+                       <p class="lead">Imagen Circuito TinkerCad:</p>
+                       <img src="Images/Inteligentextra.png" alt="Descripción de la imagen">
+   
+   
+                   </div>
+               </div>
+           </div>
+       </section>
+
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+</html>
