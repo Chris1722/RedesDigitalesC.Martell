@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Login - Ibero Puebla</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: Arial, sans-serif;
+            background-image: url('../PracticaLabRD3/Images/3-min.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            display: table;
+        }
+        .container {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .centered {
+            margin-left: auto;
+            margin-right: auto;
+            width: 300px; /* Ajusta este valor según sea necesario */
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .centered input[type="text"], 
+        .centered input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .centered input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .centered input[type="submit"] {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .centered input[type="submit"]:hover {
+            background-color: #444;
+        }
+        .centered label {
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .footer {
+            display: table-row;
+            height: 50px; /* Ajusta este valor según sea necesario */
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="centered">
+            <form>
+                <label for="username">Nombre de usuario</label>
+                <input type="text" id="username" name="username" placeholder="Nombre de usuario">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" placeholder="Contraseña">
+                <div>
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Recordar nombre de usuario</label>
+                </div>
+                <input type="submit" value="Acceder">
+                <p><a href="#">¿Olvidó su nombre de usuario o contraseña?</a></p>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Dirección de Innovación e Internacionalización Educativa / Educación Virtual Universidad Iberoamericana Puebla</p>
+        <p>Tels. +52 (222) 372 3000 / 2290700</p>
+    </div>
+</body>
+</html>

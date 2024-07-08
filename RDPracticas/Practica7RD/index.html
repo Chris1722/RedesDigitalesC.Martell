@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Full Width Pics - Start Bootstrap Template</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+        .code-block {
+            background-color: #f8f9fa;
+            padding: 1em;
+            border-radius: 5px;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 14px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+          <a class="navbar-brand" href="#!">Ibero Puebla</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                  <li class="nav-item"><a class="nav-link active" aria-current="page" href="../">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/RDPracticas/">RD</a></li>
+
+                  <li class="nav-item"><a class="nav-link" href="/LabRDPracticas/">Lab. RD</a></li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+    <!-- Header - set the background image for the header in the line below-->
+    <header class="py-5 bg-image-full" style="background-image: url('../../images/FondoPaginaPrincipal.jpg')">
+        <div class="text-center my-5">
+            <h1 class="text-white fs-3 fw-bolder">Practica 7</h1>
+        </div>
+    </header>
+    <!-- About section-->
+    <section id="about">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <h2>Inputs en HTML</h2>
+                    <p class="lead">En esta practica vimos sobre los distintos tipos de INPUTS en html, y los implementamos en la pagina:</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services section-->
+    <section class="bg-light" id="services">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Codigo-->
+                    <p class="lead">Input Type Text</p>
+                    <form>
+                      <label for="fname">First name:</label><br>
+                      <input type="text" id="fname" name="fname"><br>
+                      <label for="lname">Last name:</label><br>
+                      <input type="text" id="lname" name="lname">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Password</p>
+                    <form>
+                      <label for="username">Username:</label><br>
+                      <input type="text" id="username" name="username"><br>
+                      <label for="pwd">Password:</label><br>
+                      <input type="password" id="pwd" name="pwd">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Submit</p>
+                    <form action="/action_page.php">
+                      <label for="fname">First name:</label><br>
+                      <input type="text" id="fname" name="fname" value="John"><br>
+                      <label for="lname">Last name:</label><br>
+                      <input type="text" id="lname" name="lname" value="Doe"><br><br>
+                      <input type="submit" value="Submit">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Reset</p>
+                    <form action="/action_page.php">
+                      <label for="fname">First name:</label><br>
+                      <input type="text" id="fname" name="fname" value="John"><br>
+                      <label for="lname">Last name:</label><br>
+                      <input type="text" id="lname" name="lname" value="Doe"><br><br>
+                      <input type="submit" value="Submit">
+                      <input type="reset" value="Reset">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Radio</p>
+                    <form>
+                      <input type="radio" id="html" name="fav_language" value="HTML">
+                      <label for="html">HTML</label><br>
+                      <input type="radio" id="css" name="fav_language" value="CSS">
+                      <label for="css">CSS</label><br>
+                      <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+                      <label for="javascript">JavaScript</label>
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Checkbox</p>
+                    <form>
+                      <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                      <label for="vehicle1"> I have a bike</label><br>
+                      <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+                      <label for="vehicle2"> I have a car</label><br>
+                      <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                      <label for="vehicle3"> I have a boat</label>
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Button</p>
+                    <input type="button" onclick="alert('Hello World!')" value="Click Me!">
+                    <p class="lead">Input Type Color</p>
+                    <form>
+                      <label for="favcolor">Select your favorite color:</label>
+                      <input type="color" id="favcolor" name="favcolor">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Date</p>
+                    <form>
+                      <label for="birthday">Birthday:</label>
+                      <input type="date" id="birthday" name="birthday">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Datetime-local</p>
+                    <form>
+                      <label for="meeting">Meeting time:</label>
+                      <input type="datetime-local" id="meeting" name="meeting">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Email</p>
+                    <form>
+                      <label for="email">Email:</label>
+                      <input type="email" id="email" name="email">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type File</p>
+                    <form>
+                      <label for="myfile">Select a file:</label>
+                      <input type="file" id="myfile" name="myfile">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Hidden</p>
+                    <form>
+                      <input type="hidden" id="custId" name="custId" value="3487">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Image</p>
+                    <form>
+                      <input type="image" src="../Practica7RD/Images/boton.jpg" alt="Submit" width="48" height="48">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Month</p>
+                    <form>
+                      <label for="bdaymonth">Birthday (month and year):</label>
+                      <input type="month" id="bdaymonth" name="bdaymonth">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Number</p>
+                    <form>
+                      <label for="quantity">Quantity (between 1 and 5):</label>
+                      <input type="number" id="quantity" name="quantity" min="1" max="5">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Range</p>
+                    <form>
+                      <label for="vol">Volume (between 0 and 50):</label>
+                      <input type="range" id="vol" name="vol" min="0" max="50">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Search</p>
+                    <form>
+                      <label for="search">Search:</label>
+                      <input type="search" id="search" name="search">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Tel</p>
+                    <form>
+                      <label for="phone">Phone number:</label>
+                      <input type="tel" id="phone" name="phone">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Time</p>
+                    <form>
+                      <label for="appt">Select a time:</label>
+                      <input type="time" id="appt" name="appt">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type URL</p>
+                    <form>
+                      <label for="homepage">Add your homepage:</label>
+                      <input type="url" id="homepage" name="homepage">
+                    </form>
+                    <pre>
+
+                    </pre>
+                    <p class="lead">Input Type Week</p>
+                    <form>
+                      <label for="week">Select a week:</label>
+                      <input type="week" id="week" name="week">
+                    </form>
+                    <pre>
+
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+</html>
