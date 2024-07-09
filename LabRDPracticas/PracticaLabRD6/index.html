@@ -134,8 +134,9 @@ void loop() {
                     <p class="lead">Imagen Circuito Wowki:</p>
                     <img src="Images/Digital.png" alt="Descripción de la imagen">
                     <p class="lead">Video:</p>
-                    <iframe src="https://iberopuebla-my.sharepoint.com/personal/195248_iberopuebla_mx/_layouts/15/embed.aspx?UniqueId=bd94f88a-94c7-450f-b951-9480f8847e0a&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen title="Circuito 1 Practica 6 lab.mp4"></iframe>
-                </div>
+                    <video class="video" controls>
+                      <source src="../PracticaLabRD6/assets/Circuito 1 Practica 6 lab.mp4" type="video/mp4">
+                  </video>                </div>
             </div>
         </div>
     </section>
@@ -206,8 +207,10 @@ void loop() {
                      <p class="lead">Imagen Circuito Wowki:</p>
                      <img src="Images/analogico1.png" alt="Descripción de la imagen">
                      <p class="lead">Video:</p>
-                     <iframe src="https://iberopuebla-my.sharepoint.com/personal/195248_iberopuebla_mx/_layouts/15/embed.aspx?UniqueId=88cb7007-ac09-430c-8fdc-519dd8f3ebe3&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen title="Circuito 2 Practica 6 Lab.mp4"></iframe>
-                 </div>
+                     <video class="video" controls>
+                      <source src="../PracticaLabRD6/assets/Circuito 2 Practica 6 lab.mp4" type="video/mp4">
+                  </video>                
+                  </div>
              </div>
          </div>
      </section>
@@ -299,8 +302,9 @@ if((WiFi.status() == WL_CONNECTED)) {
                     <p class="lead">Imagen Circuito Wowki:</p>
                     <img src="Images/inteligente1.png" alt="Descripción de la imagen">
                     <p class="lead">Video:</p>
-                    <iframe src="https://iberopuebla-my.sharepoint.com/personal/195248_iberopuebla_mx/_layouts/15/embed.aspx?UniqueId=c17d2932-4775-4dfd-88e8-0bba871046f4&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen title="Circuito 3 Practica 6 lab.mp4"></iframe>
-                </div>
+                    <video class="video" controls>
+                      <source src="../PracticaLabRD6/assets/Circuito 3 Practica 6 lab.mp4" type="video/mp4">
+                  </video>                
             </div>
         </div>
     </section>
@@ -354,8 +358,8 @@ void loop() {
     
                          <p class="lead">Imagen Circuito Wowki:</p>
                          <img src="Images/PIR.png" alt="Descripción de la imagen">
-     
-     
+                         <source src="../PracticaLabRD6/assets/PIR 4.mp4" type="video/mp4">
+                        </video> 
                      </div>
                  </div>
              </div>
@@ -369,19 +373,59 @@ void loop() {
                       <h2>5to Circuito</h2>
                       <p class="lead">Sensor Analogico Slide Potenciometer ESP32</p>
                       <pre class="code-block"><code>
-int potpin = 33;  // Pin analógico usado para conectar el potenciómetro
-int val;    // Variable para leer el valor del pin analógico
+#include <WiFi.h>
+#include <HTTPClient.h>
+
+int pot = 33;
+int led = 32;
+
+// Variables de estado
+int valor_analogico = 0;
+
+String url ="https://api.thingspeak.com/update?";
+String api_key ="19YABMJXZNFDGYQI";
+String sensor ="field1";
 
 void setup() {
-  Serial.begin(115200); // Inicializa la comunicación serie a 115200 baudios
+  // Configurar el puerto 32 como salida
+  pinMode(led, OUTPUT);
+
+  delay(1000);
+  Serial.begin(115200);
+
+  WiFi.begin("Wokwi-GUEST", "");
+
+  while((WiFi.status() != WL_CONNECTED)) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("Wifi conected");
 }
 
 void loop() {
-  val = analogRead(potpin); // Lee el valor del potenciómetro (valor entre 0 y 4095 para ESP32)
-  Serial.print("El valor del Potenciómetro es: ");
-  Serial.println(val); // Imprime el valor leído
+  // Leer el estado del botón
+  valor_analogico = analogRead(pot);
+  // Si el botón está presionado, encender el LED
+  if (valor_analogico >= 2048) {
+    digitalWrite(led, HIGH);
+  } else {
+    // Si el botón no está presionado, apagar el LED
+    digitalWrite(led, LOW);
+  }
 
-  delay(500); // Espera 500 ms antes de la siguiente lectura
+  if((WiFi.status() == WL_CONNECTED)) {
+
+    HTTPClient http;
+    String message=url+"api_key="+api_key+"&"+sensor+"="+String(valor_analogico);
+    http.begin(message);
+
+    int httpCode = http.GET();
+    Serial.println(message);
+    Serial.print("GET code:");
+    Serial.println(httpCode);
+    http.end();
+  }
+  delay(1000);
 }
 
 
@@ -389,7 +433,9 @@ void loop() {
   
                       <p class="lead">Imagen Circuito Wowki:</p>
                       <img src="Images/Analogico.png" alt="Descripción de la imagen">
-  
+                      <video class="video" controls>
+                      <source src="../PracticaLabRD6/assets/Slide 5.mp4" type="video/mp4">
+                    </video>
   
                   </div>
               </div>
@@ -404,57 +450,6 @@ void loop() {
                       <h2>6to Circuito</h2>
                       <p class="lead">Sensor Inteligente MPU </p>
                       <pre class="code-block"><code>
-// Start the simulation, click on the MPU6050 part, and
-// change the x/y/z values to see changes in the plotter.
-/*
-#include <Adafruit_MPU6050.h>
-#include <Adafruit_Sensor.h>
-#include <Wire.h>
-
-Adafruit_MPU6050 mpu;
-
-void setup(void) {
-  Serial.begin(115200);
-
-  // Try to initialize!
-  if (!mpu.begin()) {
-    Serial.println("Failed to find MPU6050 chip");
-    while (1) {
-      delay(10);
-    }
-  }
-
-  mpu.setAccelerometerRange(MPU6050_RANGE_16_G);
-  mpu.setGyroRange(MPU6050_RANGE_250_DEG);
-  mpu.setFilterBandwidth(MPU6050_BAND_21_HZ);
-  Serial.println("");
-  delay(100);
-}
-
-void loop() {
-
-  /* Get new sensor events with the readings 
-  sensors_event_t a, g, temp;
-  mpu.getEvent(&a, &g, &temp);
-
-  /* Print out the values 
-  Serial.print(a.acceleration.x);
-  Serial.print(",");
-  Serial.print(a.acceleration.y);
-  Serial.print(",");
-  Serial.print(a.acceleration.z);
-  Serial.print(", ");
-  Serial.print(g.gyro.x);
-  Serial.print(",");
-  Serial.print(g.gyro.y);
-  Serial.print(",");
-  Serial.print(g.gyro.z);
-  Serial.println("");
-
-  delay(1000);
-}
-*/
-
 // Librerías
 #include <WiFi.h>
 #include <HTTPClient.h>
@@ -538,7 +533,9 @@ void loop() {
   
                        <p class="lead">Imagen Circuito Wowki:</p>
                        <img src="Images/Inteligentextra.png" alt="Descripción de la imagen">
-   
+                       <video class="video" controls>
+                        <source src="../PracticaLabRD6/assets/ultimo.mp4" type="video/mp4">
+                      </video>
    
                    </div>
                </div>
